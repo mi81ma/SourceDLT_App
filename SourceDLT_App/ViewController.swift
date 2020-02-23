@@ -12,10 +12,16 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
-    @IBOutlet var sceneView: ARSCNView!
+   var sceneView: ARSCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        sceneView = {
+            let arscnView = ARSCNView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+
+            return arscnView
+        }()
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -32,9 +38,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR_Resources", bundle: Bundle.main) else {
+            fatalError("Failed to load the reference images")
+        }
+
+
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
+        configuration.detectionImages = referenceImages
 
         // Run the view's session
         sceneView.session.run(configuration)
