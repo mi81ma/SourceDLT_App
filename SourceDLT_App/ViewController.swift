@@ -68,12 +68,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // add Photo
         let PhotoNode = SCNNode(geometry: SCNPlane(width: 1, height: 1))
 
-         PhotoNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "object_image_cat")
-//        PhotoNode.geometry?.firstMaterial?.diffuse.contents = self.downloadImage
-
+        PhotoNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "object_image_cat")
         PhotoNode.geometry?.firstMaterial?.isDoubleSided = true // 写真を両面に配置する
-        PhotoNode.position = SCNVector3(2, 1, 0)
-        PhotoNode.eulerAngles.x = -.pi / 2
 
         PhotoNode.name = "photo_node"
         print("photo_node: ", PhotoNode)
