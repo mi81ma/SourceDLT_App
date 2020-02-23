@@ -15,7 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // ViewControllerのインスタンス
+        let firstView = ScannerViewController()
+
+        //        // Navigation Controller のインスタンス
+        //        let navigationController = UINavigationController(rootViewController: firstView)
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+
+        // set NavigationController to root View
+        self.window?.rootViewController = firstView
+
+        window?.backgroundColor = .white
+
+
+        window?.makeKeyAndVisible()
         return true
     }
 
