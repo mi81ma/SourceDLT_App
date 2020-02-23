@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // ViewControllerのインスタンス
-        let firstView = ScannerViewController()
+        let firstView = ViewController()
 
         //        // Navigation Controller のインスタンス
         //        let navigationController = UINavigationController(rootViewController: firstView)
