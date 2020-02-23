@@ -3,7 +3,7 @@
 //  SourceDLT_App
 //
 //  Created by masato on 23/2/2020.
-//  Copyright © 2020 gigmuster. All rights reserved.
+//  Copyright © 2020 Masato Miyai. All rights reserved.
 //
 
 import UIKit

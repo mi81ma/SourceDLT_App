@@ -13,6 +13,7 @@
 		69A5F8C9240247CC006518D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69A5F8C7240247CC006518D7 /* Main.storyboard */; };
 		69A5F8CB240247CF006518D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69A5F8CA240247CF006518D7 /* Assets.xcassets */; };
 		69A5F8CE240247CF006518D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69A5F8CC240247CF006518D7 /* LaunchScreen.storyboard */; };
+		69A5F8D624024840006518D7 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A5F8D524024840006518D7 /* ScannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		69A5F8CA240247CF006518D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69A5F8CD240247CF006518D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		69A5F8CF240247CF006518D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69A5F8D524024840006518D7 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				69A5F8C1240247CC006518D7 /* AppDelegate.swift */,
 				69A5F8C3240247CC006518D7 /* art.scnassets */,
 				69A5F8C5240247CC006518D7 /* ViewController.swift */,
+				69A5F8D524024840006518D7 /* ScannerViewController.swift */,
 				69A5F8C7240247CC006518D7 /* Main.storyboard */,
 				69A5F8CA240247CF006518D7 /* Assets.xcassets */,
 				69A5F8CC240247CF006518D7 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A5F8D624024840006518D7 /* ScannerViewController.swift in Sources */,
 				69A5F8C6240247CC006518D7 /* ViewController.swift in Sources */,
 				69A5F8C2240247CC006518D7 /* AppDelegate.swift in Sources */,
 			);
