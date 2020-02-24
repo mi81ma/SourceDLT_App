@@ -14,9 +14,25 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     var sceneView: ARSCNView!
     var isPushConfirmButton = false
-
-
     var alertController: UIAlertController!
+
+
+    lazy var loginButton: UIButton = {
+
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Login", for: .normal)
+
+        button.tintColor = .white
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.backgroundColor = #colorLiteral(red: 0, green: 0.3018001914, blue: 0.8385717273, alpha: 1)
+        button.layer.opacity = 1.0
+        button.layer.cornerRadius = 5.0
+//        button.addTarget(self, action: #selector(modalViewTouched(_:)), for: .touchUpInside)
+
+        return button
+
+    }()
 
     fileprivate func showAlert01() {
         // Alert Actionをsetする
@@ -59,6 +75,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = false
 
         view.addSubview(sceneView)
+
+        view.addSubview(loginButton)
+        loginButton.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 30, bottom: 0, right: 0), size: CGSize(width: 80, height: 30))
+
 
         showAlert01()
     }
