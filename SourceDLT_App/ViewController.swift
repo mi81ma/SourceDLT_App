@@ -12,8 +12,38 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
-   var sceneView: ARSCNView!
+    var sceneView: ARSCNView!
+    var isPushConfirmButton = false
+
+
+    var alertController: UIAlertController!
     
+    fileprivate func showAlert01() {
+        //        ------------------
+
+        // Alert Actionをsetする
+        let alertAction = UIAlertAction(title: "Confirm ", style: .default) { (action) in
+            self.isPushConfirmButton = true
+            print("self.isPushConfirmButton: ", self.isPushConfirmButton)
+
+        }
+
+        // AlertActionでCancelボタンを作る
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+
+        // Alert ActionをUIAlertViewControllerに追加して表示させる
+        alertController = UIAlertController(title: "Please check your ID", message: "ManufacturerID: XYZpharma789\nTime: 20200223:01:12:33", preferredStyle: .alert)
+
+        alertController.addAction(alertAction)
+        alertController.addAction(cancelAction)
+
+        DispatchQueue.main.async{
+            self.present(self.alertController, animated: true) {
+
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,8 +60,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = false
 
         view.addSubview(sceneView)
+
+        showAlert01()
     }
-    
+
+
+
+
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -60,20 +96,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
 
     // Override to create and configure nodes for anchors added to the view's session.
+    fileprivate func AddImage(_ node: SCNNode, isPushConfirm: Bool) {
+
+        if isPushConfirm {
+            // add Photo
+            let PhotoNode = SCNNode(geometry: SCNPlane(width: 1, height: 1))
+
+            PhotoNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "object_image_cat")
+            PhotoNode.geometry?.firstMaterial?.isDoubleSided = true // 写真を両面に配置する
+
+            PhotoNode.name = "photo_node"
+            print("photo_node: ", PhotoNode)
+            node.addChildNode(PhotoNode)
+        }
+
+    }
+
+
+
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         let node = SCNNode()
 
         print("find QR code")
 
-        // add Photo
-        let PhotoNode = SCNNode(geometry: SCNPlane(width: 1, height: 1))
+        self.AddImage(node, isPushConfirm: self.isPushConfirmButton)
 
-        PhotoNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "object_image_cat")
-        PhotoNode.geometry?.firstMaterial?.isDoubleSided = true // 写真を両面に配置する
-
-        PhotoNode.name = "photo_node"
-        print("photo_node: ", PhotoNode)
-        node.addChildNode(PhotoNode)
         // --------- 以上、写真のNode ---------------
      
         return node
