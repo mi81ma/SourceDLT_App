@@ -29,35 +29,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         button.layer.opacity = 1.0
         button.layer.cornerRadius = 5.0
 //        button.addTarget(self, action: #selector(modalViewTouched(_:)), for: .touchUpInside)
-
         return button
 
     }()
 
-    fileprivate func showAlert01() {
-        // Alert Actionをsetする
-        let alertAction = UIAlertAction(title: "Confirm ", style: .default) { (action) in
-            self.isPushConfirmButton = true
-            print("self.isPushConfirmButton: ", self.isPushConfirmButton)
-        }
 
-        // AlertActionでCancelボタンを作る
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-
-        // Alert ActionをUIAlertViewControllerに追加して表示させる
-        alertController = UIAlertController(title: "Please check your ID", message: "ManufacturerID: XYZpharma789\nTime: 20200223:01:12:33", preferredStyle: .alert)
-
-        // Add Alert Action on UIAlertController
-        alertController.addAction(alertAction)
-        alertController.addAction(cancelAction)
-
-        // Show AlertController
-        DispatchQueue.main.async{
-            self.present(self.alertController, animated: true) {
-
-            }
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,5 +135,32 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+
+
+
+    fileprivate func showAlert01() {
+        // Alert Actionをsetする
+        let alertAction = UIAlertAction(title: "Confirm ", style: .default) { (action) in
+            self.isPushConfirmButton = true
+            print("self.isPushConfirmButton: ", self.isPushConfirmButton)
+        }
+
+        // AlertActionでCancelボタンを作る
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+
+        // Alert ActionをUIAlertViewControllerに追加して表示させる
+        alertController = UIAlertController(title: "Please check your ID", message: "ManufacturerID: XYZpharma789\nTime: 20200223:01:12:33", preferredStyle: .alert)
+
+        // Add Alert Action on UIAlertController
+        alertController.addAction(alertAction)
+        alertController.addAction(cancelAction)
+
+        // Show AlertController
+        DispatchQueue.main.async{
+            self.present(self.alertController, animated: true) {
+
+            }
+        }
     }
 }
