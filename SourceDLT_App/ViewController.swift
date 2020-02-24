@@ -17,15 +17,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 
     var alertController: UIAlertController!
-    
-    fileprivate func showAlert01() {
-        //        ------------------
 
+    fileprivate func showAlert01() {
         // Alert Actionをsetする
         let alertAction = UIAlertAction(title: "Confirm ", style: .default) { (action) in
             self.isPushConfirmButton = true
             print("self.isPushConfirmButton: ", self.isPushConfirmButton)
-
         }
 
         // AlertActionでCancelボタンを作る
@@ -34,9 +31,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Alert ActionをUIAlertViewControllerに追加して表示させる
         alertController = UIAlertController(title: "Please check your ID", message: "ManufacturerID: XYZpharma789\nTime: 20200223:01:12:33", preferredStyle: .alert)
 
+        // Add Alert Action on UIAlertController
         alertController.addAction(alertAction)
         alertController.addAction(cancelAction)
 
+        // Show AlertController
         DispatchQueue.main.async{
             self.present(self.alertController, animated: true) {
 
