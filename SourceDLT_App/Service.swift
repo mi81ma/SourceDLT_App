@@ -23,11 +23,4 @@ class Service {
     }
 }
 
-extension Int {
-    func degreesToRadians() -> CGFloat {
-        return CGFloat(self) * CGFloat.pi / 180.0
-    }
-}
-
-
 
