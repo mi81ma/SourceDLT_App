@@ -122,6 +122,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let scene = SCNScene(named: "art.scnassets/box.scn")
         let modelNode = (scene?.rootNode.childNode(withName: "object", recursively: false))!
 //        modelNode.scale = SCNVector3(x: 1.5, y: 1.5, z: 1.5)
+
+        // object3D moving
+        let rotateAction = SCNAction.rotate(by: 360.degreesToRadians(),
+                                            around: SCNVector3(0, 1, 0),
+                                            duration: 8)
+        let rotateForeverAction = SCNAction.repeatForever(rotateAction)
+        modelNode.runAction(rotateForeverAction)
+
+
         node.addChildNode(modelNode)
      
         return node
