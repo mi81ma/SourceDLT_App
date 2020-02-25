@@ -97,7 +97,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             // add Photo
             let PhotoNode = SCNNode(geometry: SCNPlane(width: 1, height: 1))
 
-            PhotoNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "object_image_cat")
+            PhotoNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "detail_explanation")
             PhotoNode.geometry?.firstMaterial?.isDoubleSided = true // 写真を両面に配置する
 
             PhotoNode.name = "photo_node"
