@@ -13,7 +13,7 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     var sceneView: ARSCNView!
-    var isPushConfirmButton = false
+    var isPushConfirmButton = true
     var alertController: UIAlertController!
 
 
