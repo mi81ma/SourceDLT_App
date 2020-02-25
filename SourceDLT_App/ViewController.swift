@@ -117,6 +117,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         self.AddImage(node, isPushConfirm: self.isPushConfirmButton)
 
         // --------- 以上、写真のNode ---------------
+
+        //モデルノードの追加
+        let scene = SCNScene(named: "art.scnassets/box.scn")
+        let modelNode = (scene?.rootNode.childNode(withName: "object", recursively: false))!
+//        modelNode.scale = SCNVector3(x: 1.5, y: 1.5, z: 1.5)
+        node.addChildNode(modelNode)
      
         return node
     }
