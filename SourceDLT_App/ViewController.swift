@@ -15,10 +15,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     var isLogin = false
 
+    var testLoginCounter = 0
 
     var sceneView: ARSCNView!
     var isPushConfirmButton = true
     var alertController: UIAlertController!
+
+
+    lazy var loginStatusTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = .lightGray
+
+
+        return textView
+    }()
 
 
     lazy var loginButton: UIButton = {
