@@ -13,21 +13,27 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
 
-    var isLogin = false
+    var hsmIds = ["XYZpharma789", "VAN2234", "OCEAN402a", "SHOP342B12", "4x234fca987"]
 
-    var testLoginCounter = 0
+    var isLogin = false
+    var isPushConfirmButton = true
+
+    var testHsmIdCounter = 0
 
     var sceneView: ARSCNView!
-    var isPushConfirmButton = true
     var alertController: UIAlertController!
 
 
-    lazy var loginStatusTextView: UITextView = {
-        let textView = UITextView()
-        textView.backgroundColor = .lightGray
+    lazy var loginStatusLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
 
+        label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        label.textColor = .white
 
-        return textView
+        label.text = "  Login User: \(hsmIds[testHsmIdCounter])"
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 12)
+        return label
     }()
 
 
@@ -64,6 +70,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.loginButton.backgroundColor = UIColor.green
             self.loginButton.tintColor = .black
             self.loginButton.setTitle("Logout", for: .normal)
+
+
+            self.view.addSubview(self.loginStatusLabel)
+            self.loginStatusLabel.anchor(top: self.loginButton.topAnchor, leading: self.loginButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 30, bottom: 0, right: 0), size: CGSize(width: 200, height: 30))
         }
 
         // AlertActionでCancelボタンを作る
