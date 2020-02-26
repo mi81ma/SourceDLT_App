@@ -59,21 +59,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         alertInsertUSB()
     }
 
+    fileprivate func afterLoginChangeView() {
+        self.isLogin = true
+
+        self.loginButton.backgroundColor = UIColor.green
+        self.loginButton.tintColor = .black
+        self.loginButton.setTitle("Logout", for: .normal)
+
+
+        self.view.addSubview(self.loginStatusLabel)
+        self.loginStatusLabel.anchor(top: self.loginButton.topAnchor, leading: self.loginButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 30, bottom: 0, right: 0), size: CGSize(width: 200, height: 30))
+    }
+
     func alertInsertUSB() {
         // Alert Actionをsetする
         let alertAction = UIAlertAction(title: "Read HSM", style: .default) { (action) in
 
             print("Read HSM pressed")
 
-            self.isLogin = true
 
-            self.loginButton.backgroundColor = UIColor.green
-            self.loginButton.tintColor = .black
-            self.loginButton.setTitle("Logout", for: .normal)
+            // test
+            do {
+                sleep(4)
+            }
 
-
-            self.view.addSubview(self.loginStatusLabel)
-            self.loginStatusLabel.anchor(top: self.loginButton.topAnchor, leading: self.loginButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 30, bottom: 0, right: 0), size: CGSize(width: 200, height: 30))
+            self.afterLoginChangeView()
         }
 
         // AlertActionでCancelボタンを作る
