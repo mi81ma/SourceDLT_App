@@ -27,6 +27,38 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var alertController: UIAlertController!
 
 
+    lazy var transitToHistoryViewButton: UIButton = {
+
+        let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("History", for: .normal)
+
+        button.tintColor = .black
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        button.layer.opacity = 1.0
+        button.layer.cornerRadius = 5.0
+        button.addTarget(self, action: #selector(tappedTransitToHistoryViewButton), for: .touchUpInside)
+        return button
+    }()
+
+
+    @objc private func tappedTransitToHistoryViewButton() {
+
+        // button vibration
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+
+        // 移動先のViewを定義する.
+        let secondViewController = ScannerViewController()
+
+        // SecondViewに移動する.
+        self.navigationController?.pushViewController(secondViewController, animated: true)
+
+    }
+
+
+
     lazy var loginStatusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,8 +80,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         button.setTitle("Logout", for: .normal)
 
         button.tintColor = .black
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         button.layer.opacity = 1.0
         button.layer.cornerRadius = 5.0
         button.addTarget(self, action: #selector(tappedLogoutButton), for: .touchUpInside)
@@ -75,7 +107,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             DispatchQueue.main.async{
                 self.loginStatusLabel.removeFromSuperview()
                 self.view.addSubview(self.loginButton)
-                self.loginButton.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 60, height: 30))
+                self.loginButton.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 55, height: 40))
 
                 self.loginStatusLabel.removeFromSuperview()
             }
@@ -109,7 +141,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         button.setTitle("Login", for: .normal)
 
         button.tintColor = .black
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         button.layer.opacity = 1.0
         button.layer.cornerRadius = 5.0
@@ -134,11 +166,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         DispatchQueue.main.async{
 
-        self.view.addSubview(self.logoutButton)
-        self.logoutButton.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 60, height: 30))
+            self.view.addSubview(self.logoutButton)
+            self.logoutButton.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: nil, padding:   .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 55, height: 40))
 
-        self.view.addSubview(self.loginStatusLabel)
-        self.loginStatusLabel.anchor(top: self.loginButton.topAnchor, leading: self.loginButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: CGSize(width: 200, height: 30))
+            self.view.addSubview(self.loginStatusLabel)
+            self.loginStatusLabel.anchor(top: self.loginButton.topAnchor, leading: self.loginButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: CGSize(width: 200, height: 40))
 
             }
     }
@@ -246,7 +278,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         view.addSubview(sceneView)
 
         view.addSubview(loginButton)
-        loginButton.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 60, height: 30))
+        loginButton.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 55, height: 40))
 
 
         showAlert01()
@@ -309,8 +341,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         self.AddImage(node, isPushConfirm: self.isPushConfirmButton)
 
-        // --------- 以上、写真のNode ---------------
-
         //モデルノードの追加
         let scene = SCNScene(named: "art.scnassets/box.scn")
         let modelNode = (scene?.rootNode.childNode(withName: "object", recursively: false))!
@@ -323,8 +353,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let rotateForeverAction = SCNAction.repeatForever(rotateAction)
         modelNode.runAction(rotateForeverAction)
 
-
         node.addChildNode(modelNode)
+
+        //Add transitToHistoryViewButton
+         DispatchQueue.main.async{
+            self.view.addSubview(self.transitToHistoryViewButton)
+            self.transitToHistoryViewButton.anchor(top: self.view.topAnchor, leading: nil, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 50, left: 0, bottom: 0, right: 20), size: CGSize(width: 55, height: 40))
+
+            }
+
      
         return node
     }
