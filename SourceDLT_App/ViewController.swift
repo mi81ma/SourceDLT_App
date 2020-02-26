@@ -40,6 +40,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }()
 
 
+
     lazy var logoutButton: UIButton = {
 
         let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
@@ -59,40 +60,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @objc private func tappedLogoutButton() {
         print("test logout button")
 
-    }
-
-
-    lazy var loginButton: UIButton = {
-
-        let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Login", for: .normal)
-
-        button.tintColor = .black
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-        button.layer.opacity = 1.0
-        button.layer.cornerRadius = 5.0
-        button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
-        return button
-
-    }()
-
-    @objc private func tappedLoginButton() {
-        print("test button")
-
         logoutAlert()
+
+
     }
+
 
     func logoutAlert() {
         // Alert Actionをsetする
         let alertAction = UIAlertAction(title: "Yes", style: .default) { (action) in
 
             print("Pressed Logout Button")
-            // test
-            do {
 
+            DispatchQueue.main.async{
+                self.loginStatusLabel.removeFromSuperview()
+                self.view.addSubview(self.loginButton)
+                self.loginButton.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 60, height: 30))
+
+                self.loginStatusLabel.removeFromSuperview()
             }
+
         }
 
         // AlertActionでCancelボタンを作る
@@ -114,16 +101,46 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
 
+
+    lazy var loginButton: UIButton = {
+
+        let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Login", for: .normal)
+
+        button.tintColor = .black
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        button.layer.opacity = 1.0
+        button.layer.cornerRadius = 5.0
+        button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
+        return button
+
+    }()
+
+    @objc private func tappedLoginButton() {
+        print("test button")
+
+        alertInsertUSB()
+    }
+
+
     fileprivate func afterLoginChangeView() {
         self.isLogin = true
 
-        self.loginButton.backgroundColor = UIColor.green
-        self.loginButton.tintColor = .black
-        self.loginButton.setTitle("Logout", for: .normal)
+//        self.loginButton.backgroundColor = UIColor.green
+//        self.loginButton.tintColor = .black
+//        self.loginButton.setTitle("Logout", for: .normal)
 
+        DispatchQueue.main.async{
+
+        self.view.addSubview(self.logoutButton)
+        self.logoutButton.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 60, height: 30))
 
         self.view.addSubview(self.loginStatusLabel)
         self.loginStatusLabel.anchor(top: self.loginButton.topAnchor, leading: self.loginButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: CGSize(width: 200, height: 30))
+
+            }
     }
 
     func alertInsertUSB() {
@@ -135,11 +152,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
             // test
             do {
-                sleep(4)
+//                sleep(4)
             }
 
             self.alertEnterPassword()
-
 
         }
 
