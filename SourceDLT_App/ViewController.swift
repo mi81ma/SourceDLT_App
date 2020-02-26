@@ -19,7 +19,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     lazy var loginButton: UIButton = {
 
-        let button = UIButton()
+        let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Login", for: .normal)
 
@@ -28,10 +28,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         button.backgroundColor = #colorLiteral(red: 0, green: 0.3018001914, blue: 0.8385717273, alpha: 1)
         button.layer.opacity = 1.0
         button.layer.cornerRadius = 5.0
-//        button.addTarget(self, action: #selector(modalViewTouched(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
         return button
 
     }()
+
+    @objc private func tappedLoginButton() {
+        print("test button")
+
+
+    }
 
 
 
