@@ -15,6 +15,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     var hsmIds = ["XYZpharma789", "VAN2234", "OCEAN402a", "SHOP342B12", "4x234fca987"]
 
+    // Add Password TextField
+    var tField: UITextField!
+
     var isLogin = false
     var isPushConfirmButton = true
 
@@ -59,6 +62,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         alertInsertUSB()
     }
 
+
     fileprivate func afterLoginChangeView() {
         self.isLogin = true
 
@@ -83,7 +87,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 sleep(4)
             }
 
-            self.afterLoginChangeView()
+            self.alertEnterPassword()
+
+
         }
 
         // AlertActionでCancelボタンを作る
@@ -91,6 +97,55 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // Alert ActionをUIAlertViewControllerに追加して表示させる
         alertController = UIAlertController(title: "Connect HSM\n(Hardware Security Module)", message: "After connection HSM,\n press \"Read HSM\" Button", preferredStyle: .alert)
+
+        // Add Alert Action on UIAlertController
+        alertController.addAction(alertAction)
+        alertController.addAction(cancelAction)
+
+        // Show AlertController
+        DispatchQueue.main.async{
+            self.present(self.alertController, animated: true) {
+
+            }
+        }
+
+    }
+
+
+    func alertEnterPassword() {
+        // Alert Actionをsetする
+        let alertAction = UIAlertAction(title: "Enter", style: .default) { (action) in
+
+            print("Read HSM pressed")
+
+
+            // test
+            do {
+                sleep(4)
+            }
+
+            self.afterLoginChangeView()
+        }
+
+        // AlertActionでCancelボタンを作る
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+
+        // Alert ActionをUIAlertViewControllerに追加して表示させる
+        alertController = UIAlertController(title: "New HSM recognized\nEnter Password", message: "", preferredStyle: .alert)
+
+
+
+
+        func configurationTextField(textField: UITextField!)
+        {
+            print("generating the TextField")
+            textField.placeholder = "Enter Password"
+
+            tField = textField
+            tField.isSecureTextEntry = true
+        }
+
+        alertController.addTextField(configurationHandler: configurationTextField)
 
         // Add Alert Action on UIAlertController
         alertController.addAction(alertAction)
