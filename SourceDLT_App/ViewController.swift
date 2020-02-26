@@ -40,15 +40,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }()
 
 
+    lazy var logoutButton: UIButton = {
+
+        let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Logout", for: .normal)
+
+        button.tintColor = .black
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        button.layer.opacity = 1.0
+        button.layer.cornerRadius = 5.0
+        button.addTarget(self, action: #selector(tappedLogoutButton), for: .touchUpInside)
+        return button
+
+    }()
+
+    @objc private func tappedLogoutButton() {
+        print("test logout button")
+
+    }
+
+
     lazy var loginButton: UIButton = {
 
         let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Login", for: .normal)
 
-        button.tintColor = .white
+        button.tintColor = .black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.backgroundColor = #colorLiteral(red: 0, green: 0.3018001914, blue: 0.8385717273, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         button.layer.opacity = 1.0
         button.layer.cornerRadius = 5.0
         button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
@@ -59,7 +81,36 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @objc private func tappedLoginButton() {
         print("test button")
 
-        alertInsertUSB()
+        logoutAlert()
+    }
+
+    func logoutAlert() {
+        // Alert Actionをsetする
+        let alertAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+
+            print("Pressed Logout Button")
+            // test
+            do {
+
+            }
+        }
+
+        // AlertActionでCancelボタンを作る
+        let cancelAction = UIAlertAction(title: "No", style: .destructive, handler: nil)
+
+        // Alert ActionをUIAlertViewControllerに追加して表示させる
+        alertController = UIAlertController(title: "Logout Immediately?", message: "", preferredStyle: .alert)
+
+        // Add Alert Action on UIAlertController
+        alertController.addAction(alertAction)
+        alertController.addAction(cancelAction)
+
+        // Show AlertController
+        DispatchQueue.main.async{
+            self.present(self.alertController, animated: true) {
+
+            }
+        }
     }
 
 
@@ -72,7 +123,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 
         self.view.addSubview(self.loginStatusLabel)
-        self.loginStatusLabel.anchor(top: self.loginButton.topAnchor, leading: self.loginButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 30, bottom: 0, right: 0), size: CGSize(width: 200, height: 30))
+        self.loginStatusLabel.anchor(top: self.loginButton.topAnchor, leading: self.loginButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: CGSize(width: 200, height: 30))
     }
 
     func alertInsertUSB() {
@@ -108,7 +159,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
             }
         }
-
     }
 
 
@@ -121,7 +171,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
             // test
             do {
-                sleep(4)
+                sleep(2)
             }
 
             self.afterLoginChangeView()
@@ -180,7 +230,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         view.addSubview(sceneView)
 
         view.addSubview(loginButton)
-        loginButton.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 30, bottom: 0, right: 0), size: CGSize(width: 80, height: 30))
+        loginButton.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 60, height: 30))
 
 
         showAlert01()
