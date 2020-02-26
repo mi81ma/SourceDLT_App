@@ -35,7 +35,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         button.tintColor = .black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 1, green: 0.2969330549, blue: 0, alpha: 1)
         button.layer.opacity = 1.0
         button.layer.cornerRadius = 5.0
         button.addTarget(self, action: #selector(tappedTransitToHistoryViewButton), for: .touchUpInside)
@@ -50,10 +50,28 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         generator.impactOccurred()
 
         // 移動先のViewを定義する.
-        let secondViewController = ScannerViewController()
+        let secondViewController = HistoryViewController(collectionViewLayout: UICollectionViewFlowLayout())
+
+        let navigationController = UINavigationController(rootViewController:   secondViewController)
 
         // SecondViewに移動する.
-        self.navigationController?.pushViewController(secondViewController, animated: true)
+        navigationController.modalPresentationStyle = .fullScreen
+
+        self.present(navigationController, animated: true, completion: nil)
+
+
+//        // 遷移するViewを定義する.
+//        let WeAR_Id_ViewController = WeAR_Id_EnterViewController()
+//        //                loginViewController.navigationBar.prefersLargeTitles = true
+//        WeAR_Id_ViewController.title = "WeAR Connect"
+//
+//        let navigationController = UINavigationController(rootViewController:   WeAR_Id_ViewController)
+//
+//        // アニメーションを設定する.
+//        navigationController.modalPresentationStyle = .fullScreen
+//
+//        // Viewの移動する.
+//        self.present(navigationController, animated: true, completion: nil)
 
     }
 

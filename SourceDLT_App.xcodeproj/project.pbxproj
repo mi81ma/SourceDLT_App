@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6956371024067BE1002BD1E0 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6956370F24067BE1002BD1E0 /* HistoryViewController.swift */; };
 		69A5F8C2240247CC006518D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A5F8C1240247CC006518D7 /* AppDelegate.swift */; };
 		69A5F8C4240247CC006518D7 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 69A5F8C3240247CC006518D7 /* art.scnassets */; };
 		69A5F8C6240247CC006518D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A5F8C5240247CC006518D7 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6956370F24067BE1002BD1E0 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		69A5F8BE240247CC006518D7 /* SourceDLT_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SourceDLT_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A5F8C1240247CC006518D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69A5F8C3240247CC006518D7 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				69A5F8C1240247CC006518D7 /* AppDelegate.swift */,
 				69A5F8C3240247CC006518D7 /* art.scnassets */,
 				69A5F8C5240247CC006518D7 /* ViewController.swift */,
+				6956370F24067BE1002BD1E0 /* HistoryViewController.swift */,
 				69A5F8D524024840006518D7 /* ScannerViewController.swift */,
 				69A5F8CA240247CF006518D7 /* Assets.xcassets */,
 				69A5F8CC240247CF006518D7 /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 				69A5F8D624024840006518D7 /* ScannerViewController.swift in Sources */,
 				69CEEC082403B01A00CAF28A /* Service.swift in Sources */,
 				69A5F8C6240247CC006518D7 /* ViewController.swift in Sources */,
+				6956371024067BE1002BD1E0 /* HistoryViewController.swift in Sources */,
 				69A5F8C2240247CC006518D7 /* AppDelegate.swift in Sources */,
 				69CEEC0C2403EAEE00CAF28A /* UIView+Layout.swift in Sources */,
 			);
