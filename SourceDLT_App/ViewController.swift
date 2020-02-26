@@ -13,6 +13,7 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
 
+    var isLogin = false
 
 
     var sceneView: ARSCNView!
@@ -48,7 +49,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
             print("Read HSM pressed")
 
+            self.isLogin = true
 
+            self.loginButton.backgroundColor = UIColor.green
+            self.loginButton.tintColor = .black
+            self.loginButton.setTitle("Logout", for: .normal)
         }
 
         // AlertActionでCancelボタンを作る
