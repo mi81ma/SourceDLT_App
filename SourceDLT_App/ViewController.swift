@@ -12,6 +12,9 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+
+
+
     var sceneView: ARSCNView!
     var isPushConfirmButton = true
     var alertController: UIAlertController!
@@ -36,6 +39,34 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @objc private func tappedLoginButton() {
         print("test button")
 
+        alertInsertUSB()
+    }
+
+    func alertInsertUSB() {
+        // Alert Actionをsetする
+        let alertAction = UIAlertAction(title: "Read HSM", style: .default) { (action) in
+
+            print("Read HSM pressed")
+
+
+        }
+
+        // AlertActionでCancelボタンを作る
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+
+        // Alert ActionをUIAlertViewControllerに追加して表示させる
+        alertController = UIAlertController(title: "Connect HSM\n(Hardware Security Module)", message: "After connection HSM,\n press \"Read HSM\" Button", preferredStyle: .alert)
+
+        // Add Alert Action on UIAlertController
+        alertController.addAction(alertAction)
+        alertController.addAction(cancelAction)
+
+        // Show AlertController
+        DispatchQueue.main.async{
+            self.present(self.alertController, animated: true) {
+
+            }
+        }
 
     }
 
