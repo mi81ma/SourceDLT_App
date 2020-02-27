@@ -232,6 +232,10 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
 //        navigationItem.titleView = imageView
 
 
+        // navigation bar title
+        navigationController?.navigationBar.topItem?.title = "Example Medicine"
+
+
 
         // navigation bar color
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.07887881249, green: 0.231888473, blue: 0.5004345179, alpha: 1)
