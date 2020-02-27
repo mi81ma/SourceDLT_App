@@ -92,7 +92,7 @@ class HistoryCell: UICollectionViewCell {
     let redView: UIImageView = {
         let view = UIImageView(image: #imageLiteral(resourceName: "detail_explanation"))
         view.translatesAutoresizingMaskIntoConstraints = false
-        //        view.backgroundColor = .red
+//                view.backgroundColor = .red
         return view
     }()
 
@@ -222,26 +222,26 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
         collectionView.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
 
 
-
-
         // navigationItem Left Button
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(backTapped))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
 
         // navigation Title Image
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "object_image_cat"))
-        imageView.contentMode = UIView.ContentMode.scaleAspectFit
-        navigationItem.titleView = imageView
+//        let imageView = UIImageView(image: #imageLiteral(resourceName: "object_image_cat"))
+//        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+//        navigationItem.titleView = imageView
+
+
+
+        // navigation bar color
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.07887881249, green: 0.231888473, blue: 0.5004345179, alpha: 1)
 
 
         // Button Transition to Object3dDetectionViewController
         detection3DTransitionButton.frame = CGRect(x: view.frame.maxX - 80, y: 100, width: 70, height: 70)
         view.addSubview(detection3DTransitionButton)
-
-
-
-
     }
+
 
     @objc private func backTapped() {
 
@@ -313,6 +313,21 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 0)
     }
+
+
+
+    // GradientColor
+    func colorWithGradient(size: CGSize, colors: [UIColor]) -> UIColor {
+        let backgroundGradientLayer = CAGradientLayer()
+        backgroundGradientLayer.frame = CGRect(origin: .zero, size: size)
+        backgroundGradientLayer.colors = colors.map { $0.cgColor }
+        UIGraphicsBeginImageContext(size)
+        backgroundGradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        let backgroundColorImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return UIColor(patternImage: backgroundColorImage!)
+    }
+
 
 }
 
