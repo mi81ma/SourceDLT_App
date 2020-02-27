@@ -3,17 +3,9 @@
 //  SourceDLT_App
 //
 //  Created by masato on 26/2/2020.
-//  Copyright © 2020 gigmuster. All rights reserved.
+//  Copyright © 2020 Masato Miyai. All rights reserved.
 //
 
-//import UIKit
-//
-//class HistoryViewController: ViewController {
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .cyan
-//    }
-//}
 
 
 import UIKit
@@ -22,7 +14,16 @@ class CustomWidthView: UIView {
     var width = 1.0
 
     override public var intrinsicContentSize: CGSize {
-        return CGSize(width: 0, height: width)
+        return CGSize(width: width, height: 0)
+    }
+}
+
+
+class CustomHeightView: UIView {
+    var height = 1.0
+
+    override public var intrinsicContentSize: CGSize {
+        return CGSize(width: 0, height: height)
     }
 }
 
@@ -33,20 +34,21 @@ class HistoryCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //        backgroundColor = .yellow
+        backgroundColor = .yellow
         setupViews()
     }
 
     let wordLabel: UILabel = {
         let label = UILabel()
-
+        label.text = "TEST TEST TEST"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     func setupViews() {
-        //        backgroundColor = .yellow
+        backgroundColor = .white
 
+        //MARK: 1. Vertical Split View
         addSubview(wordLabel)
         wordLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         wordLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
@@ -56,31 +58,29 @@ class HistoryCell: UICollectionViewCell {
 
         let stackView = UIStackView(arrangedSubviews: [redView, greenView])
 
-        stackView.axis = .vertical
+        stackView.axis = .horizontal
+        stackView.spacing = 1
 
-        //        stackView.spacing = 1
-        //
         stackView.distribution = .fillProportionally
         stackView.alignment = .fill
-        ////
+
         stackView.isBaselineRelativeArrangement = false
         stackView.isLayoutMarginsRelativeArrangement = false
 
 
-        stackView.subviews[0].heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 320 / 500, constant: 0).isActive = true
-        stackView.subviews[1].heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 180 / 500, constant: 0).isActive = true
+        stackView.subviews[0].widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 350 / 1000, constant: 0).isActive = true
+        stackView.subviews[1].widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 650 / 1000, constant: 0).isActive = true
+
+
 
         wordLabel.addSubview(stackView)
+
+
 
         stackView.translatesAutoresizingMaskIntoConstraints  = false
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .zero)
 
-
-        greenView.addSubview(textView)
-        textView.anchor(top: greenView.topAnchor, leading: greenView.leadingAnchor, bottom: greenView.bottomAnchor, trailing: greenView.trailingAnchor, padding: .init(top: 0, left: 20, bottom: 0, right: 0))
-
     }
-
 
 
     required init?(coder aDecoder: NSCoder) {
@@ -89,10 +89,11 @@ class HistoryCell: UICollectionViewCell {
 
 
 
-    let redView: UIImageView = {
-        let view = UIImageView(image: #imageLiteral(resourceName: "detail_explanation"))
+    //MARK: 1. Vertical Split View Parts
+    let redView: CustomWidthView = {
+        let view = CustomWidthView()
         view.translatesAutoresizingMaskIntoConstraints = false
-//                view.backgroundColor = .red
+        view.backgroundColor = .red
         return view
     }()
 
@@ -100,19 +101,27 @@ class HistoryCell: UICollectionViewCell {
     let greenView: CustomWidthView = {
         let view = CustomWidthView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        //        view.backgroundColor = .green
+        view.backgroundColor = .green
         return view
     }()
 
 
-    let textView: UITextView = {
+    let cyanView: CustomWidthView = {
+        let view = CustomWidthView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .cyan
+        return view
+    }()
 
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints  = false
-        textView.text = "This Office Max advertisement is an example of a coupon. It advertises five dollars off whenever one spends twenty-five dollars. Coupons are a great way to attract customers to a business because the customer knows that they will save money."
 
 
-        return textView
+
+    //MARK: 2. Horizontal Split Red View
+    let orangeview: CustomHeightView = {
+        let view = CustomHeightView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .orange
+        return view
     }()
 
 
@@ -233,7 +242,8 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
 
 
         // navigation bar title
-        navigationController?.navigationBar.topItem?.title = "Example Medicine"
+        navigationController?.navigationBar.topItem?.title = "Example Medicine History"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
 
 
 
@@ -288,7 +298,7 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
 
     // (1) セクションに何このCellを表示するかを指定する
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 10
     }
 
     // (2) セルのレイアウトを変更する
@@ -301,7 +311,7 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
 
     // (3) セルのサイズを指定する（関数を表示するにはUICollectionViewDelegateFlowLayoutが必要）
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.width)
+        return CGSize(width: view.frame.width, height: 150)
     }
 
 

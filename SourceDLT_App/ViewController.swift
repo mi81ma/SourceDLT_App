@@ -35,7 +35,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         button.tintColor = .black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.backgroundColor = #colorLiteral(red: 1, green: 0.2969330549, blue: 0, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0, green: 0.6650493741, blue: 0.8382979631, alpha: 1)
         button.layer.opacity = 1.0
         button.layer.cornerRadius = 5.0
         button.addTarget(self, action: #selector(tappedTransitToHistoryViewButton), for: .touchUpInside)
