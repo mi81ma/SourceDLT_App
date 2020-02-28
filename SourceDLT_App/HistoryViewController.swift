@@ -32,6 +32,14 @@ class CustomHeightView: UIView {
 // (4) セルのレイアウトを指定するクラスを作る
 class HistoryCell: UICollectionViewCell {
 
+
+    var receiptTimeText = ""
+    var shipmentTimeText = ""
+    var userImage = UIImage()
+    var userNameText = ""
+
+
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .yellow
@@ -509,7 +517,8 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
 
-        
+
+//        cell.greenView. self.UserDataArray[indexPath.row]
 
         return cell
     }
