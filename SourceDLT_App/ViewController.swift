@@ -17,7 +17,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var userImageArray: [UIImage] = [#imageLiteral(resourceName: "circle_manufacturer"), #imageLiteral(resourceName: "circle_distoributor"), #imageLiteral(resourceName: "circle_shipment"), #imageLiteral(resourceName: "circle_pharmacy"), #imageLiteral(resourceName: "circle_prescription")]
     var UserDataArray: [UserData] = []
 
-    var testHsmIdCounter = 0
+    var testUserCounter = 0
 
     // Add Password TextField
     var tField: UITextField!
@@ -72,7 +72,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         label.textColor = .white
 
-        label.text = "  Login User: \(userNameArray[testHsmIdCounter])"
+        label.text = "  Login User: \(userNameArray[testUserCounter])"
         label.font = UIFont(name: "HiraKakuProN-W6", size: 12)
         return label
     }()
@@ -118,7 +118,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 self.loginStatusLabel.removeFromSuperview()
 
                 // test Add testHsmIdCounter
-                self.testHsmIdCounter += 1
+                self.testUserCounter += 1
 
 
                 // test
@@ -409,6 +409,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.transitToHistoryViewButton.anchor(top: self.view.topAnchor, leading: nil, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 50, left: 0, bottom: 0, right: 20), size: CGSize(width: 55, height: 40))
 
             }
+
+
+        // Add UserData on Array if isLogin is true
+        DispatchQueue.main.async{
+            if self.isLogin {
+
+                let now = NSDate()
+                let formatter = DateFormatter()
+                formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy/MM/dd HH:mm:ss", options: 0, locale:    Locale(identifier: "zh_Hans_HK"))
+                let nowTime = formatter.string(from: now as Date)
+                print("nowTime: ", nowTime)
+
+                // 01 set User Name on Array
+                // 02 set User Image on Array
+                // 03 set Receipt Time on Array
+                let userData = UserData(userImage: self.userImageArray[self.testUserCounter], userName: self.userNameArray[self.testUserCounter], recieptTime: nowTime)
+
+
+                print(" userImage: ", self.userImageArray[self.testUserCounter], "\n userName: ", self.userNameArray[self.testUserCounter], "\n recieptTime: ", nowTime)
+            }
+        }
 
      
         return node
