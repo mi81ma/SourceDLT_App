@@ -15,16 +15,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     var userNameArray = ["XYZpharma789", "VAN2234", "OCEAN402a", "SHOP342B12", "4x234fca987"]
     var userImageArray: [UIImage] = [#imageLiteral(resourceName: "circle_manufacturer"), #imageLiteral(resourceName: "circle_distoributor"), #imageLiteral(resourceName: "circle_shipment"), #imageLiteral(resourceName: "circle_pharmacy"), #imageLiteral(resourceName: "circle_prescription")]
-    var recieptTimeArray: [String] = []
-    var shipmentTimeArray: [String] = []
+    var UserDataArray: [UserData] = []
+
+    var testHsmIdCounter = 0
 
     // Add Password TextField
     var tField: UITextField!
 
     var isLogin = false
     var isPushConfirmButton = true
-
-    var testHsmIdCounter = 0
 
     var sceneView: ARSCNView!
     var alertController: UIAlertController!
@@ -127,6 +126,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
                 // reset configuration:
                 self.resetSession()
+
+
+                self.isLogin = false
             }
 
         }
@@ -207,6 +209,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // reset configuration:
         resetSession()
+
+        // set isLogin = true when login
+        self.isLogin = true
     }
 
     func alertInsertUSB() {

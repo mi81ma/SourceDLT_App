@@ -11,6 +11,6 @@ import UIKit
 public struct UserData {
     var userImage: UIImage
     var userName: String
-    var recieptTime: String
-    var shipmentTime: String
+    var recieptTime: String?
+    var shipmentTime: String?
 }
