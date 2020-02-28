@@ -269,7 +269,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 sleep(2)
             }
 
-            self.afterLoginChangeView()
+            self.showAlert01()
         }
 
         // AlertActionでCancelボタンを作る
@@ -466,6 +466,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let alertAction = UIAlertAction(title: "Confirm ", style: .default) { (action) in
             self.isPushConfirmButton = true
             print("self.isPushConfirmButton: ", self.isPushConfirmButton)
+
+            self.afterLoginChangeView()
         }
 
         // AlertActionでCancelボタンを作る
