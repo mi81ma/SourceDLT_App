@@ -80,7 +80,7 @@ class HistoryCell: UICollectionViewCell {
 
 
         //MARK: 2. Horizontal Split Red View
-        let horizontalStackView01 = UIStackView(arrangedSubviews: [orangeView, userNameLabel])
+        let horizontalStackView01 = UIStackView(arrangedSubviews: [userImage, userNameLabel])
 
         horizontalStackView01.axis = .vertical
 
@@ -183,11 +183,21 @@ class HistoryCell: UICollectionViewCell {
 
 
     //MARK: 2. Horizontal Split Red View
-    let orangeView: CustomHeightView = {
-        let view = CustomHeightView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .orange
-        return view
+//    let userImage: CustomHeightView = {
+//        let view = CustomHeightView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.backgroundColor = .orange
+//        return view
+//    }()
+
+    let userImage: UIImageView = {
+
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .white
+        imageView.image = #imageLiteral(resourceName: "icon_watch")
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        return imageView
     }()
 
     let userNameLabel: UILabel = {
