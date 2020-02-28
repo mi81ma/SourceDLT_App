@@ -54,8 +54,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // 移動先のViewを定義する.
         let secondViewController = HistoryViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        secondViewController.UserDataArray = self.UserDataArray
-        print("secondViewController.UserDataArray: ", secondViewController.UserDataArray)
+        secondViewController.userDataArrayInHistoryViewController = self.UserDataArray
+        print("secondViewController.UserDataArray: ", secondViewController.userDataArrayInHistoryViewController)
 
 
         let navigationController = UINavigationController(rootViewController:   secondViewController)

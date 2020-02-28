@@ -210,13 +210,6 @@ class HistoryCell: UICollectionViewCell {
 
 
     //MARK: 2. Horizontal Split Red View
-//    let userImage: CustomHeightView = {
-//        let view = CustomHeightView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = .orange
-//        return view
-//    }()
-
     let userImage: UIImageView = {
 
         let imageView = UIImageView()
@@ -430,7 +423,7 @@ class HeaderCell: UICollectionViewCell {
 
 class HistoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var UserDataArray:[UserData] = []
+    var userDataArrayInHistoryViewController:[UserData] = []
 
 
     let cellId = "cellId"
@@ -449,7 +442,7 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("UserDataArray in HistoryViewController: ", UserDataArray)
+        print("UserDataArray in HistoryViewController: ", userDataArrayInHistoryViewController)
 
         //        line01 = view.frame.width / 43  * 18
         //        line02 = view.frame.width / 43  * 15
@@ -519,32 +512,33 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
 
     // (1) セクションに何このCellを表示するかを指定する
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserDataArray.count
+        return userDataArrayInHistoryViewController.count
     }
 
     // (2) セルのレイアウトを変更する
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HistoryCell
 
-        cell.userImageFromArray = self.UserDataArray[indexPath.row].userImage
-        cell.userNameText = UserDataArray[indexPath.row].userName
 
-        cell.receiptWatchImage = #imageLiteral(resourceName: "icon_watch")
-        guard let reciptTime = UserDataArray[indexPath.row].recieptTime else { return cell}
-        cell.receiptTimeText = reciptTime
+        cell.userImage.image = self.userDataArrayInHistoryViewController[indexPath.row].userImage
+        cell.userNameLabel.text = userDataArrayInHistoryViewController[indexPath.row].userName
 
-        cell.receiptMarkImage = #imageLiteral(resourceName: "icon_green")
-        cell.receiptText = "Receipt"
+        cell.imageView01.image = #imageLiteral(resourceName: "icon_watch")
+        guard let reciptTime = userDataArrayInHistoryViewController[indexPath.row].recieptTime else { return cell}
+        cell.receiptTimeLabel.text = reciptTime
+
+        cell.imageView02.image = #imageLiteral(resourceName: "icon_green")
+        cell.receiptLabel.text = "Receipt"
 
 
-        if  UserDataArray.canAccess(index: indexPath.row + 1) {
+        if  userDataArrayInHistoryViewController.canAccess(index: indexPath.row + 1) {
             // 取得できたときの処理
-            cell.shipmentMarkImage = #imageLiteral(resourceName: "icon_green")
-            cell.shipmentTimeText = "Shipment"
+            cell.imageView03.image = #imageLiteral(resourceName: "icon_green")
+            cell.shipmentLabel.text = "Shipment"
 
-            cell.shipmentTimeImage = #imageLiteral(resourceName: "icon_watch")
-            guard let shipmentTime = UserDataArray[indexPath.row + 1].recieptTime else { return cell}
-            cell.shipmentTimeText = shipmentTime
+            cell.imageView04.image = #imageLiteral(resourceName: "icon_watch")
+            guard let shipmentTime = userDataArrayInHistoryViewController[indexPath.row + 1].recieptTime else { return cell}
+            cell.shipmentTimeLabel.text = shipmentTime
 
         } else {
             // 取得できない場合の処理
