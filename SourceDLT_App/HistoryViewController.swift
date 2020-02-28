@@ -35,7 +35,7 @@ class HistoryCell: UICollectionViewCell {
 
     var receiptTimeText = ""
     var shipmentTimeText = ""
-    var userImage = UIImage()
+    var userImageFromArray = UIImage()
     var userNameText = ""
 
 
