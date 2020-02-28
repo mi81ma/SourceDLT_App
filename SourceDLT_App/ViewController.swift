@@ -162,6 +162,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         // sessionを再開
         self.sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+
+
+        // Remove History button from View
+        var delview = self.view.viewWithTag(100)
+        delview?.removeFromSuperview()
     }
 
 
