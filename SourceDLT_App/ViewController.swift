@@ -140,12 +140,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 // test
                 print("sceneView.node: ", self.sceneView.scene)
 
-                    print("node: ", node)
-                    print("configuration: ", self.configuration)
-
-
-                }
-
                 // reset configuration:
                 self.resetSession()
             }
