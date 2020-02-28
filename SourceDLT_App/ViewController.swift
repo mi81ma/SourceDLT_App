@@ -35,6 +35,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("History", for: .normal)
+        button.accessibilityIdentifier = "transitToHistoryViewButton"
 
         button.tintColor = .black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
@@ -134,9 +135,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
                 // test Add testHsmIdCounter
                 self.testHsmIdCounter += 1
+
+
+                // test
+                print("sceneView.node: ", self.sceneView.scene)
+
+                    print("node: ", node)
+                    print("configuration: ", self.configuration)
+
+
+                }
+
+                // reset configuration:
+                self.resetSession()
             }
 
         }
+
 
         // AlertActionでCancelボタンを作る
         let cancelAction = UIAlertAction(title: "No", style: .destructive, handler: nil)
@@ -154,6 +169,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
             }
         }
+    }
+
+    func resetSession(){
+        // sessionを停止
+        self.sceneView.session.pause()
+        // 全てのNodeに対して処理を行う
+        self.sceneView.scene.rootNode.enumerateChildNodes {(node, _) in
+            // Nodeを削除
+            node.removeFromParentNode()
+        }
+        // sessionを再開
+        self.sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
 
 
@@ -178,6 +205,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         print("test button")
 
         alertInsertUSB()
+
     }
 
 
@@ -197,6 +225,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.loginStatusLabel.anchor(top: self.loginButton.topAnchor, leading: self.loginButton.trailingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: CGSize(width: 200, height: 40))
 
             }
+
+        // reset configuration:
+        resetSession()
     }
 
     func alertInsertUSB() {
@@ -311,6 +342,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 
 
+    // Create a session configuration
+    let configuration = ARWorldTrackingConfiguration()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -322,11 +355,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         
         // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
+//        let configuration = ARWorldTrackingConfiguration()
         configuration.detectionImages = referenceImages
+
 
         // Run the view's session
         sceneView.session.run(configuration)
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
