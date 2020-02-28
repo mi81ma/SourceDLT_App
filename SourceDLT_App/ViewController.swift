@@ -13,7 +13,10 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
 
-    var hsmIds = ["XYZpharma789", "VAN2234", "OCEAN402a", "SHOP342B12", "4x234fca987"]
+    var userNameArray = ["XYZpharma789", "VAN2234", "OCEAN402a", "SHOP342B12", "4x234fca987"]
+    var userImageArray: [UIImage] = [#imageLiteral(resourceName: "circle_manufacturer"), #imageLiteral(resourceName: "circle_distoributor"), #imageLiteral(resourceName: "circle_shipment"), #imageLiteral(resourceName: "circle_pharmacy"), #imageLiteral(resourceName: "circle_prescription")]
+    var recieptTimeArray: [String] = []
+    var shipmentTimeArray: [String] = []
 
     // Add Password TextField
     var tField: UITextField!
@@ -84,7 +87,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         label.textColor = .white
 
-        label.text = "  Login User: \(hsmIds[testHsmIdCounter])"
+        label.text = "  Login User: \(userNameArray[testHsmIdCounter])"
         label.font = UIFont(name: "HiraKakuProN-W6", size: 12)
         return label
     }()

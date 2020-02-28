@@ -195,7 +195,7 @@ class HistoryCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .white
-        imageView.image = #imageLiteral(resourceName: "icon_watch")
+        imageView.image = #imageLiteral(resourceName: "circle_manufacturer")
         imageView.contentMode = UIView.ContentMode.scaleAspectFit
         return imageView
     }()
