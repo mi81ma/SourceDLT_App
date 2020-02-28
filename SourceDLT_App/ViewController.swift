@@ -331,8 +331,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         view.addSubview(loginButton)
         loginButton.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 20, bottom: 0, right: 0), size: CGSize(width: 55, height: 40))
 
-
-        showAlert01()
     }
 
 
