@@ -35,6 +35,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("History", for: .normal)
+        button.tag = 100
 
         button.tintColor = .black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
