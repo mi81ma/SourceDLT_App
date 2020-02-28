@@ -502,12 +502,14 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
 
     // (1) セクションに何このCellを表示するかを指定する
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return UserDataArray.count
     }
 
     // (2) セルのレイアウトを変更する
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+
+        
 
         return cell
     }
