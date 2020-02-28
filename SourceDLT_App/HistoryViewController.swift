@@ -33,11 +33,20 @@ class CustomHeightView: UIView {
 class HistoryCell: UICollectionViewCell {
 
 
-    var receiptTimeText = ""
-    var shipmentTimeText = ""
     var userImageFromArray = UIImage()
     var userNameText = ""
 
+    var receiptWatchImage = UIImage()
+    var receiptTimeText = ""
+
+    var receiptMarkImage = UIImage()
+    var receiptText = ""
+
+    var shipmentMarkImage = UIImage()
+    var shipmentText = ""
+
+    var shipmentTimeImage = UIImage()
+    var shipmentTimeText = ""
 
 
     override init(frame: CGRect) {
@@ -89,6 +98,8 @@ class HistoryCell: UICollectionViewCell {
 
         //MARK: 2. Horizontal Split Red View
         let horizontalStackView01 = UIStackView(arrangedSubviews: [userImage, userNameLabel])
+        userImage.image = userImageFromArray
+        userNameLabel.text = userNameText
 
         horizontalStackView01.axis = .vertical
 
@@ -132,34 +143,42 @@ class HistoryCell: UICollectionViewCell {
         //MARK: Layout
         // --------------------------------
         layoutView01.addSubview(imageView01)
+        imageView01.image = receiptWatchImage
         imageView01.anchor(top: layoutView01.topAnchor, leading: layoutView01.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: layoutView01.frame.height, height: layoutView01.frame.height))
 
         layoutView01.addSubview(receiptTimeLabel)
+        receiptTimeLabel.text = receiptTimeText
         receiptTimeLabel.anchor(top: layoutView01.topAnchor, leading: imageView01.trailingAnchor, bottom: layoutView01.bottomAnchor, trailing: layoutView01.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
 
 
 
         layoutView02.addSubview(imageView02)
+        imageView02.image = receiptWatchImage
         imageView02.anchor(top: layoutView02.topAnchor, leading: layoutView02.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: layoutView02.frame.height, height: layoutView02.frame.height))
 
-        layoutView02.addSubview(recieptLabel)
-        recieptLabel.anchor(top: layoutView02.topAnchor, leading: imageView02.trailingAnchor, bottom: layoutView02.bottomAnchor, trailing: layoutView02.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+        layoutView02.addSubview(receiptLabel)
+        receiptLabel.text = receiptText
+        receiptLabel.anchor(top: layoutView02.topAnchor, leading: imageView02.trailingAnchor, bottom: layoutView02.bottomAnchor, trailing: layoutView02.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
 
 
 
 
         layoutView03.addSubview(imageView03)
+        imageView03.image = shipmentMarkImage
         imageView03.anchor(top: layoutView03.topAnchor, leading: layoutView03.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: layoutView03.frame.height, height: layoutView03.frame.height))
 
         layoutView03.addSubview(shipmentLabel)
+        shipmentLabel.text = shipmentText
         shipmentLabel.anchor(top: layoutView03.topAnchor, leading: imageView03.trailingAnchor, bottom: layoutView03.bottomAnchor, trailing: layoutView03.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
 
 
 
         layoutView04.addSubview(imageView04)
+        imageView04.image = shipmentTimeImage
         imageView04.anchor(top: layoutView04.topAnchor, leading: layoutView04.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: layoutView04.frame.height, height: layoutView04.frame.height))
 
         layoutView04.addSubview(shipmentTimeLabel)
+        shipmentTimeLabel.text = shipmentTimeText
         shipmentTimeLabel.anchor(top: layoutView04.topAnchor, leading: imageView04.trailingAnchor, bottom: layoutView04.bottomAnchor, trailing: layoutView04.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
 
 
@@ -213,7 +232,7 @@ class HistoryCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .white
         label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        label.text = "  Manufacturer"
+        label.text = "  "
         label.textAlignment = .center
         label.font = UIFont(name: "HiraKakuProN-W6", size: 12)
         return label
@@ -287,7 +306,7 @@ class HistoryCell: UICollectionViewCell {
         return imageView
     }()
 
-    let recieptLabel: UILabel = {
+    let receiptLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -430,6 +449,8 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("UserDataArray in HistoryViewController: ", UserDataArray)
+
         //        line01 = view.frame.width / 43  * 18
         //        line02 = view.frame.width / 43  * 15
 
@@ -493,19 +514,7 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
         return button
     }()
 
-    @objc func detection3DTransitionButtonTapped() {
-
-//        // button vibration
-//        let generator = UIImpactFeedbackGenerator(style: .medium)
-//        generator.impactOccurred()
-//
-//        // 移動先のViewを定義する.
-//        let secondViewController = Object3dDetectionViewController()
-//
-//        // SecondViewに移動する.
-//        self.navigationController?.pushViewController(secondViewController, animated: true)
-
-    }
+    @objc func detection3DTransitionButtonTapped() { }
 
 
     // (1) セクションに何このCellを表示するかを指定する
@@ -515,10 +524,32 @@ class HistoryViewController: UICollectionViewController, UICollectionViewDelegat
 
     // (2) セルのレイアウトを変更する
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HistoryCell
+
+        cell.userImageFromArray = self.UserDataArray[indexPath.row].userImage
+        cell.userNameText = UserDataArray[indexPath.row].userName
+
+        cell.receiptWatchImage = #imageLiteral(resourceName: "icon_watch")
+        guard let reciptTime = UserDataArray[indexPath.row].recieptTime else { return cell}
+        cell.receiptTimeText = reciptTime
+
+        cell.receiptMarkImage = #imageLiteral(resourceName: "icon_green")
+        cell.receiptText = "Receipt"
 
 
-//        cell.greenView. self.UserDataArray[indexPath.row]
+        if  UserDataArray.canAccess(index: indexPath.row + 1) {
+            // 取得できたときの処理
+            cell.shipmentMarkImage = #imageLiteral(resourceName: "icon_green")
+            cell.shipmentTimeText = "Shipment"
+
+            cell.shipmentTimeImage = #imageLiteral(resourceName: "icon_watch")
+            guard let shipmentTime = UserDataArray[indexPath.row + 1].recieptTime else { return cell}
+            cell.shipmentTimeText = shipmentTime
+
+        } else {
+            // 取得できない場合の処理
+            return cell
+        }
 
         return cell
     }

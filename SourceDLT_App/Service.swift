@@ -30,4 +30,11 @@ extension Int {
 }
 
 
+// Arrayクラスにアクセス可能かどうかBoolを返す関数を追加
+extension Array {
+    func canAccess(index: Int) -> Bool {
+        return self.count-1 >= index
+    }
+}
+
 
