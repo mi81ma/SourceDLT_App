@@ -474,7 +474,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
 
         // Alert ActionをUIAlertViewControllerに追加して表示させる
-        alertController = UIAlertController(title: "Please check your ID", message: "ManufacturerID: XYZpharma789\nTime: 20200223:01:12:33", preferredStyle: .alert)
+        alertController = UIAlertController(title: "Please check your ID", message: "ManufacturerID: \(userNameArray[testUserCounter])\nTime: 20200223:01:12:33", preferredStyle: .alert)
 
         // Add Alert Action on UIAlertController
         alertController.addAction(alertAction)
