@@ -428,6 +428,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 
                 print(" userImage: ", self.userImageArray[self.testUserCounter], "\n userName: ", self.userNameArray[self.testUserCounter], "\n recieptTime: ", nowTime)
+
+                self.UserDataArray.append(userData)
+                print("UserDataArray: ", self.UserDataArray)
             }
         }
 
