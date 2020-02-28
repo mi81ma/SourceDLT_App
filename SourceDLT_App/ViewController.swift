@@ -54,6 +54,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // 移動先のViewを定義する.
         let secondViewController = HistoryViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        secondViewController.UserDataArray = self.UserDataArray
+        print("secondViewController.UserDataArray: ", secondViewController.UserDataArray)
 
 
         let navigationController = UINavigationController(rootViewController:   secondViewController)
@@ -275,6 +277,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // Alert ActionをUIAlertViewControllerに追加して表示させる
         alertController = UIAlertController(title: "New HSM recognized\nEnter Password", message: "", preferredStyle: .alert)
+
+
+        // Change loginStatusLabel.text
+        self.loginStatusLabel.text = "  Login User: \(userNameArray[testUserCounter])"
 
 
 
