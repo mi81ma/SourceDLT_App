@@ -190,11 +190,15 @@ class HistoryCell: UICollectionViewCell {
         return view
     }()
 
-    let userNameLabel: CustomHeightView = {
-        let view = CustomHeightView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .cyan
-        return view
+    let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .white
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        label.text = "  Manufacturer"
+        label.textAlignment = .center
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 12)
+        return label
     }()
 
 
