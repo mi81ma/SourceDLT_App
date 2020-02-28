@@ -72,13 +72,88 @@ class HistoryCell: UICollectionViewCell {
         stackView.subviews[1].widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 650 / 1000, constant: 0).isActive = true
 
 
-
         wordLabel.addSubview(stackView)
-
 
 
         stackView.translatesAutoresizingMaskIntoConstraints  = false
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .zero)
+
+
+        //MARK: 2. Horizontal Split Red View
+        let horizontalStackView01 = UIStackView(arrangedSubviews: [orangeView, userNameLabel])
+
+        horizontalStackView01.axis = .vertical
+
+        horizontalStackView01.distribution = .fillProportionally
+        horizontalStackView01.alignment = .fill
+
+        horizontalStackView01.isBaselineRelativeArrangement = false
+        horizontalStackView01.isLayoutMarginsRelativeArrangement = false
+
+        horizontalStackView01.subviews[0].heightAnchor.constraint(equalTo: horizontalStackView01.heightAnchor, multiplier: 650/1000, constant: 0).isActive = true
+        horizontalStackView01.subviews[1].heightAnchor.constraint(equalTo: horizontalStackView01.heightAnchor, multiplier: 350/1000, constant: 0).isActive = true
+
+        redView.addSubview(horizontalStackView01)
+        horizontalStackView01.translatesAutoresizingMaskIntoConstraints  = false
+        horizontalStackView01.anchor(top: redView.topAnchor, leading: redView.leadingAnchor, bottom: redView.bottomAnchor, trailing: redView.trailingAnchor, padding: .zero)
+
+
+        //MARK: 3. Horizontal Split Red View
+        let horizontalStackView02 = UIStackView(arrangedSubviews: [layoutView01, layoutView02, layoutView03, layoutView04])
+
+        horizontalStackView02.axis = .vertical
+
+        horizontalStackView02.distribution = .fillProportionally
+        horizontalStackView02.alignment = .fill
+
+        horizontalStackView02.isBaselineRelativeArrangement = false
+        horizontalStackView02.isLayoutMarginsRelativeArrangement = false
+
+        horizontalStackView02.subviews[0].heightAnchor.constraint(equalTo: horizontalStackView02.heightAnchor, multiplier: 1/4, constant: 0).isActive = true
+        horizontalStackView02.subviews[1].heightAnchor.constraint(equalTo: horizontalStackView02.heightAnchor, multiplier: 1/4, constant: 0).isActive = true
+        horizontalStackView02.subviews[2].heightAnchor.constraint(equalTo: horizontalStackView02.heightAnchor, multiplier: 1/4, constant: 0).isActive = true
+        horizontalStackView02.subviews[3].heightAnchor.constraint(equalTo: horizontalStackView02.heightAnchor, multiplier: 1/4, constant: 0).isActive = true
+
+        greenView.addSubview(horizontalStackView02)
+        horizontalStackView02.translatesAutoresizingMaskIntoConstraints  = false
+        horizontalStackView02.anchor(top: greenView.topAnchor, leading: greenView.leadingAnchor, bottom: greenView.bottomAnchor, trailing: greenView.trailingAnchor, padding: .zero)
+
+
+
+        // --------------------------------
+        //MARK: Layout
+        // --------------------------------
+        layoutView01.addSubview(imageView01)
+        imageView01.anchor(top: layoutView01.topAnchor, leading: layoutView01.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: layoutView01.frame.height, height: layoutView01.frame.height))
+
+        layoutView01.addSubview(receiptTimeLabel)
+        receiptTimeLabel.anchor(top: layoutView01.topAnchor, leading: imageView01.trailingAnchor, bottom: layoutView01.bottomAnchor, trailing: layoutView01.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+
+
+
+        layoutView02.addSubview(imageView02)
+        imageView02.anchor(top: layoutView02.topAnchor, leading: layoutView02.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: layoutView02.frame.height, height: layoutView02.frame.height))
+
+        layoutView02.addSubview(recieptLabel)
+        recieptLabel.anchor(top: layoutView02.topAnchor, leading: imageView02.trailingAnchor, bottom: layoutView02.bottomAnchor, trailing: layoutView02.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+
+
+
+
+        layoutView03.addSubview(imageView03)
+        imageView03.anchor(top: layoutView03.topAnchor, leading: layoutView03.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: layoutView03.frame.height, height: layoutView03.frame.height))
+
+        layoutView03.addSubview(shipmentLabel)
+        shipmentLabel.anchor(top: layoutView03.topAnchor, leading: imageView03.trailingAnchor, bottom: layoutView03.bottomAnchor, trailing: layoutView03.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+
+
+
+        layoutView04.addSubview(imageView04)
+        imageView04.anchor(top: layoutView04.topAnchor, leading: layoutView04.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: layoutView04.frame.height, height: layoutView04.frame.height))
+
+        layoutView04.addSubview(shipmentTimeLabel)
+        shipmentTimeLabel.anchor(top: layoutView04.topAnchor, leading: imageView04.trailingAnchor, bottom: layoutView04.bottomAnchor, trailing: layoutView04.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+
 
     }
 
@@ -101,13 +176,22 @@ class HistoryCell: UICollectionViewCell {
     let greenView: CustomWidthView = {
         let view = CustomWidthView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .green
+        // view.backgroundColor = .green
         return view
     }()
 
 
-    let cyanView: CustomWidthView = {
-        let view = CustomWidthView()
+
+    //MARK: 2. Horizontal Split Red View
+    let orangeView: CustomHeightView = {
+        let view = CustomHeightView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .orange
+        return view
+    }()
+
+    let userNameLabel: CustomHeightView = {
+        let view = CustomHeightView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .cyan
         return view
@@ -115,16 +199,120 @@ class HistoryCell: UICollectionViewCell {
 
 
 
-
-    //MARK: 2. Horizontal Split Red View
-    let orangeview: CustomHeightView = {
+    //MARK: 3. Horizontal Split Red View
+    let layoutView01: CustomHeightView = {
         let view = CustomHeightView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .orange
+        //view.backgroundColor = .red
         return view
     }()
 
+    let layoutView02: CustomHeightView = {
+        let view = CustomHeightView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        //view.backgroundColor = .blue
+        return view
+    }()
 
+    let layoutView03: CustomHeightView = {
+        let view = CustomHeightView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        //view.backgroundColor = .yellow
+        return view
+    }()
+
+    let layoutView04: CustomHeightView = {
+        let view = CustomHeightView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        //view.backgroundColor = .green
+        return view
+    }()
+
+    // --------------------------------
+    //MARK: Actual View Layout
+    // --------------------------------
+
+
+    let imageView01: UIImageView = {
+
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .white
+        imageView.image = #imageLiteral(resourceName: "icon_watch")
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        return imageView
+    }()
+
+
+    let receiptTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .white
+        label.textColor = #colorLiteral(red: 0.006700227503, green: 0.1177173927, blue: 0.6651893854, alpha: 1)
+        label.text = "  Receipt Time Time Time"
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 12)
+        return label
+    }()
+
+
+
+    let imageView02: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .white
+        imageView.image = #imageLiteral(resourceName: "icon_green")
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        return imageView
+    }()
+
+    let recieptLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.text = "  Reciept"
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 12)
+        return label
+    }()
+
+    let imageView03: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .white
+        imageView.image = #imageLiteral(resourceName: "icon_green")
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        return imageView
+    }()
+
+    let shipmentLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.text = "  Shipment"
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 12)
+        return label
+    }()
+
+
+    let imageView04: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .white
+        imageView.image = #imageLiteral(resourceName: "icon_watch")
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        return imageView
+    }()
+
+    let shipmentTimeLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = #colorLiteral(red: 0.006700227503, green: 0.1177173927, blue: 0.6651893854, alpha: 1)
+        label.text = "  Shipment Time Time Time"
+        label.font = UIFont(name: "HiraKakuProN-W6", size: 12)
+        return label
+    }()
 }
 
 
