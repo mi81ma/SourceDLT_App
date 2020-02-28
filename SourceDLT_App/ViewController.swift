@@ -55,6 +55,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // 移動先のViewを定義する.
         let secondViewController = HistoryViewController(collectionViewLayout: UICollectionViewFlowLayout())
 
+
         let navigationController = UINavigationController(rootViewController:   secondViewController)
 
         // SecondViewに移動する.

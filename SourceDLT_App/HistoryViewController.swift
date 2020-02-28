@@ -403,6 +403,8 @@ class HeaderCell: UICollectionViewCell {
 
 class HistoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var UserDataArray:[UserData] = []
+
 
     let cellId = "cellId"
     let headerId = "headerId"
