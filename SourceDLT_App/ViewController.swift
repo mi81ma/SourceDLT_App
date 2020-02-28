@@ -35,7 +35,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let button = UIButton(type: UIButton.ButtonType.system) // Button Typeをsystemにすると自然にボタンを押した時に色が変わる
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("History", for: .normal)
-        button.accessibilityIdentifier = "transitToHistoryViewButton"
 
         button.tintColor = .black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
@@ -62,21 +61,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         navigationController.modalPresentationStyle = .fullScreen
 
         self.present(navigationController, animated: true, completion: nil)
-
-
-//        // 遷移するViewを定義する.
-//        let WeAR_Id_ViewController = WeAR_Id_EnterViewController()
-//        //                loginViewController.navigationBar.prefersLargeTitles = true
-//        WeAR_Id_ViewController.title = "WeAR Connect"
-//
-//        let navigationController = UINavigationController(rootViewController:   WeAR_Id_ViewController)
-//
-//        // アニメーションを設定する.
-//        navigationController.modalPresentationStyle = .fullScreen
-//
-//        // Viewの移動する.
-//        self.present(navigationController, animated: true, completion: nil)
-
     }
 
 
